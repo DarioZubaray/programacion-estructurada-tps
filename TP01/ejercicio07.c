@@ -1,26 +1,22 @@
-/* Este codigo ha sido generado por el modulo psexport 20230904-w32 de PSeInt.
-Es posible que el codigo generado no sea completamente correcto. Si encuentra
-errores por favor reportelos en el foro (http://pseint.sourceforge.net). */
-
 #include<stdio.h>
 
-/* 7. Ingresar dos valores, calcular su suma, su producto y la resta del 1ro menos el 2do valor ingresado, imprimir los resultados. */
+// 7. Ingresar dos valores, calcular su suma, su producto y la resta del 1ro menos el 2do valor ingresado, imprimir los resultados.
+
 int main() {
-	float producto;
-	float resta;
-	float suma;
-	float valordos;
-	float valoruno;
+	float valorUno;
+	float valorDos;
+
 	printf("Ingrese un primer valor:\n");
-	scanf("%f", &valoruno);
+	scanf("%f", &valorUno);
 	printf("Ingrese un segundo valor:\n");
-	scanf("%f", &valordos);
-	suma = valoruno+valordos;
-	producto = valoruno*valordos;
-	resta = valoruno-valordos;
-	printf("La suma de %f + %f es %f\n", valoruno, valordos, suma);
-	printf("El producto entre %f x %f es %f\n", valoruno, valordos, producto);
-	printf("La resta entre %f - %f es %f\n", valoruno, valordos, resta);
+	scanf("%f", &valorDos);
+
+	float suma = valorUno + valorDos;
+	float producto = valorUno * valorDos;
+	float resta = valorUno - valorDos;
+
+	printf("La suma de %.2f + %.2f es %.2f\n", valorUno, valorDos, suma);
+	printf("El producto entre %.2f x %.2f es %f\n", valorUno, valorDos, producto);
+	printf("La resta entre %.2f - %.2f es %.2f\n", valorUno, valorDos, resta);
 	return 0;
 }
-

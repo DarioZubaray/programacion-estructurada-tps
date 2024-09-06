@@ -1,32 +1,29 @@
-/* Este codigo ha sido generado por el modulo psexport 20230904-w32 de PSeInt.
-Es posible que el codigo generado no sea completamente correcto. Si encuentra
-errores por favor reportelos en el foro (http://pseint.sourceforge.net). */
-
 #include<stdio.h>
 
-/* 10. Una concesionaria de autos desea liquidar el sueldo a cada vendedor pagando $500 por mes  */
-/* m·s un plus del 10 MOD  del precio sobre cada vehÌculo vendido y un valor constante de 50 pesos por cada uno de ellos,  */
-/* se ingresa el valor del vehÌculo y cuantos vehÌculos de ese tipo vendiÛ, calcular su sueldo e imprimirlo. */
+/* 10. Una concesionaria de autos desea liquidar el sueldo a cada vendedor pagando $500 por mes
+   m√°s un plus del 10% del precio sobre cada veh√≠culo vendido y un valor constante de 50 pesos por cada uno de ellos,
+   se ingresa el valor del veh√≠culo y cuantos veh√≠culos de ese tipo vendi√≥, calcular su sueldo e imprimirlo. */
+
 int main() {
-	float cantidadvehiculo;
-	float plusporcantidad;
-	float plusporvalor;
-	float sueldo;
-	float sueldobase;
-	float valorvehiculo;
-	printf("Ingrese el valor del vehÌculo:\n");
-	scanf("%f", &valorvehiculo);
-	printf("Ingrese cantidad de vehÌculos vendidos de este tipo:\n");
-	scanf("%f", &cantidadvehiculo);
-	sueldobase = 500;
-	plusporvalor = 0.1*(cantidadvehiculo*valorvehiculo);
-	plusporcantidad = 50*cantidadvehiculo;
-	sueldo = sueldobase+plusporvalor+plusporcantidad;
-	printf("El sueldo final es de $%f\n", sueldo);
+	const int sueldoBase = 500;
+	const float plusPorcentual = 0.1;
+	const float plusConstante = 50;
+	float valorVehiculo;
+	float cantidadVehiculo;
+
+	printf("Ingrese el valor del veh√≠culo:\n");
+	scanf("%f", &valorVehiculo);
+	printf("Ingrese cantidad de veh√≠culos vendidos de este tipo:\n");
+	scanf("%f", &cantidadVehiculo);
+
+	float plusPorValor = plusPorcentual * (cantidadVehiculo * valorVehiculo);
+	float plusPorCantidad = plusConstante * cantidadVehiculo;
+	float sueldo = sueldoBase+ plusPorValor + plusPorCantidad;
+
+	printf("El sueldo final es de $%.2f\n", sueldo);
 	printf("-------------------------------\n");
-	printf("Sueldo base de $%f\n", sueldobase);
-	printf("Plus por cantidad: $%f\n", plusporcantidad);
-	printf("Plus porcentual del $%f\n", plusporvalor);
+	printf("Sueldo base de $%i\n", sueldoBase);
+	printf("Plus por cantidad: $%.2f\n", plusPorCantidad);
+	printf("Plus porcentual del $%.2f\n", plusPorValor);
 	return 0;
 }
-
