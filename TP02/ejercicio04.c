@@ -1,45 +1,38 @@
-/* Este codigo ha sido generado por el modulo psexport 20230904-w32 de PSeInt.
-Es posible que el codigo generado no sea completamente correcto. Si encuentra
-errores por favor reportelos en el foro (http://pseint.sourceforge.net). */
-
 #include<stdio.h>
 
-/* Para las variables que no se pudo determinar el tipo se utiliza la constante
-   SIN_TIPO. El usuario debe reemplazar sus ocurrencias por el tipo adecuado
-   (usualmente int,float,bool, o char[]). */
-#define SIN_TIPO float
+/* 4. Ingresar tres valores, sumarlos, calcular el promedio
+   e indicar e imprimir cuÃ¡l de estos valores es mayor al promedio */
 
-/* 4. Ingresar tres valores, sumarlos, calcular el promedio  */
-/* e indicar e imprimir cuál de estos valores es mayor al promedio */
 int main() {
-	float promedio;
-	float resultadosuma;
-	SIN_TIPO valordos;
-	SIN_TIPO valortres;
-	SIN_TIPO valoruno;
+	float valorUno;
+	float valorDos;
+	float valorTres;
+
 	printf("Ingrese un primer valor: \n");
-	scanf("%f", valoruno);
+	scanf("%f", &valorUno);
 	printf("Ingrese un segundo valor: \n");
-	scanf("%f", valordos);
+	scanf("%f", &valorDos);
 	printf("Ingrese un tercer valor: \n");
-	scanf("%f", valortres);
-	resultadosuma = valoruno+valordos+valortres;
-	printf("El resultado de la sumatoria es: %f\n", resultadosuma);
-	promedio = resultadosuma/3;
-	printf("El promedio de los números ingresados es: %f\n", promedio);
-	if (valoruno>valordos) {
-		if (valoruno>valortres) {
-			printf("El valor %f es el mayor.\n", valoruno);
+	scanf("%f", &valorTres);
+
+	float resultadoSuma = valorUno + valorDos + valorTres;
+	printf("El resultado de la sumatoria es: %.2f\n", resultadoSuma);
+
+	float promedio = resultadoSuma/3;
+	printf("El promedio de los nÃºmeros ingresados es: %.2f\n", promedio);
+
+	if (valorUno > valorDos) {
+		if (valorUno > valorTres) {
+			printf("El valor %.2f es el mayor.\n", valorUno);
 		} else {
-			printf("El valor %f es el mayor.\n", valortres);
+			printf("El valor %.2f es el mayor.\n", valorTres);
 		}
 	} else {
-		if (valordos>valortres) {
-			printf("El valor %f es el mayor.\n", valordos);
+		if (valorDos > valorTres) {
+			printf("El valor %.2f es el mayor.\n", valorDos);
 		} else {
-			printf("El valor %f es el mayor.\n", valortres);
+			printf("El valor %.2f es el mayor.\n", valorTres);
 		}
 	}
 	return 0;
 }
-
