@@ -1,11 +1,11 @@
-// 5 - Ingresarlos datos de facturación de una empresa. 
-// Se conoce Número de factura, Número de artículo, Cantidad vendida y Precio unitario 
-// Los datos finalizan con numero de factura = 0, cada factura sólo tiene un número de artículo, 
-// y existen sólo tres artículos.
+// 5 - Ingresarlos datos de facturaciï¿½n de una empresa. 
+// Se conoce Nï¿½mero de factura, Nï¿½mero de artï¿½culo, Cantidad vendida y Precio unitario 
+// Los datos finalizan con numero de factura = 0, cada factura sï¿½lo tiene un nï¿½mero de artï¿½culo, 
+// y existen sï¿½lo tres artï¿½culos.
 Algoritmo ejercicio05
 	continuar <- Verdadero
 	Mientras continuar Hacer
-		Escribir 'Ingre una factura:'
+		Escribir 'Ingrese una factura:'
 		Leer nuevaFactura
 		Si nuevaFactura=0 Entonces
 			continuar <- Falso

@@ -1,4 +1,4 @@
-// 3 - Sobre elejercicio anterior indicar cuántas estan entre $ 400 y $ 700 inclusive.
+// 3 - Sobre elejercicio anterior indicar cuï¿½ntas estan entre $ 400 y $ 700 inclusive.
 // imprimir el resultado
 Algoritmo ejercicio03
 	continuar <- Verdadero
@@ -6,7 +6,7 @@ Algoritmo ejercicio03
 	contador <- 0
 	contadorEnRango <- 0
 	Mientras continuar Hacer
-		Escribir 'Ingre una factura:'
+		Escribir 'Ingrese una factura:'
 		Leer nuevaFactura
 		acumulador <- acumulador+nuevaFactura
 		contador <- contador+1

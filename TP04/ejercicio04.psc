@@ -6,7 +6,7 @@ Algoritmo ejercicio04
 	contadorCeros <- 0
 	contador <- 0
 	Mientras continuar Hacer
-		Escribir 'Ingre un valor:'
+		Escribir 'Ingrese un valor:'
 		Leer nuevoValor
 		contador <- contador+1
 		Si nuevoValor>0 Entonces

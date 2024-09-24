@@ -4,7 +4,7 @@ Algoritmo ejercicio06
 	mayorTemperatura <- 0
 	menorTemperatura <- 0
 	Mientras continuar Hacer
-		Escribir 'Ingre una temperatura:'
+		Escribir 'Ingrese una temperatura:'
 		Leer nuevaTemperatura
 		Si nuevaTemperatura=1000 Entonces
 			continuar <- Falso

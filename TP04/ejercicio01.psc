@@ -4,7 +4,7 @@ Algoritmo ejercicio01
 	acumulador <- 0
 	contador <- 0
 	Mientras continuar Hacer
-		Escribir 'Ingre un sueldo:'
+		Escribir 'Ingrese un sueldo:'
 		Leer nuevoSueldo
 		acumulador <- acumulador+nuevoSueldo
 		contador <- contador+1

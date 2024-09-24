@@ -1,12 +1,12 @@
 // 2 . Ingresar facturas hasta nro de factura = 0, 
-// sumar sus importes y cúales y cuantas superan los $1000. Imprimir los resultados
+// sumar sus importes y cï¿½ales y cuantas superan los $1000. Imprimir los resultados
 Algoritmo ejercicio02
 	continuar <- Verdadero
 	acumulador <- 0
 	contador <- 0
 	contadorMayorAMil <- 0
 	Mientras continuar Hacer
-		Escribir 'Ingre una factura:'
+		Escribir 'Ingrese una factura:'
 		Leer nuevaFactura
 		acumulador <- acumulador+nuevaFactura
 		contador <- contador+1

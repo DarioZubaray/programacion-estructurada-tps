@@ -1,5 +1,5 @@
-// 7 - En una carrera de autos se ingresan el número de auto y su tiempo, 
-// indicar e imprimir cuál ganó y cúal fue el último
+// 7 - En una carrera de autos se ingresan el nï¿½mero de auto y su tiempo, 
+// indicar e imprimir cuï¿½l ganï¿½ y cï¿½al fue el ï¿½ltimo
 Algoritmo ejercicio07
 	continuar <- Verdadero
 	Definir mejorTiempo Como Entero
@@ -7,7 +7,7 @@ Algoritmo ejercicio07
 	Definir peorTiempo Como Entero
 	Definir peorAuto Como Cadena
 	Mientras continuar Hacer
-		Escribir 'Ingre numero de auto:'
+		Escribir 'Ingrese numero de auto:'
 		Leer nuevoAuto
 		Escribir 'Ingrese su tiempo en seg:'
 		Leer tiempoSegundos
