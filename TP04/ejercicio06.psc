@@ -8,12 +8,13 @@ Algoritmo ejercicio06
 		Leer nuevaTemperatura
 		Si nuevaTemperatura=1000 Entonces
 			continuar <- Falso
-		FinSi
-		Si nuevaTemperatura>mayorTemperatura Entonces
-			mayorTemperatura <- nuevaTemperatura
-		FinSi
-		Si nuevaTemperatura<menorTemperatura Entonces
-			menorTemperatura <- nuevaTemperatura
+		SiNo
+			Si nuevaTemperatura>mayorTemperatura Entonces
+				mayorTemperatura <- nuevaTemperatura
+			FinSi
+			Si nuevaTemperatura<menorTemperatura Entonces
+				menorTemperatura <- nuevaTemperatura
+			FinSi
 		FinSi
 	FinMientras
 	Escribir 'La mayor temperatura registrada es: ', mayorTemperatura
