@@ -1,5 +1,3 @@
-# Funciones
-
 ### TP 4 - Estructuras de repetición Inexactas
 
 Realizar Diagrama de Flujo y Código en C de los siguientes ejercicios.
