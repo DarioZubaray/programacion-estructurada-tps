@@ -5,3 +5,4 @@ Desarrollo de Trabajos Prácticos para Programación Estructurada
 - [TP 2 - Estructura Condicional](/TP02/)
 - [TP 3 - Estructuras de repetición exactas](/TP03/)
 - [TP 4 - Estructuras de repetición Inexactas](/TP04/)
+- [TP 5 - Funciones sobre TP03 y TP04](/TP05-Funciones/)
