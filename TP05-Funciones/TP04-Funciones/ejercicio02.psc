@@ -1,5 +1,9 @@
 // 2 . Ingresar facturas hasta nro de factura = 0, 
-// sumar sus importes y cï¿½ales y cuantas superan los $1000. Imprimir los resultados
+// sumar sus importes y cuales y cuantas superan los $1000. Imprimir los resultados
+Función variableRetorno <- sumarValores(valor1,valor2)
+	variableRetorno <- valor1+valor2
+FinFunción
+
 Algoritmo ejercicio02
 	continuar <- Verdadero
 	acumulador <- 0
@@ -8,14 +12,14 @@ Algoritmo ejercicio02
 	Mientras continuar Hacer
 		Escribir 'Ingrese una factura:'
 		Leer nuevaFactura
-		acumulador <- acumulador+nuevaFactura
-		contador <- contador+1
+		acumulador <- sumarValores(acumulador,nuevaFactura)
+		contador <- sumarValores(contador,1)
 		Si nuevaFactura=0 Entonces
 			continuar <- Falso
 		FinSi
 		Si nuevaFactura>=1000 Entonces
 			Escribir 'Esta factura supera los $1000'
-			contadorMayorAMil <- contadorMayorAMil+1
+			contadorMayorAMil <- sumarValores(contadorMayorAMil,1)
 		FinSi
 	FinMientras
 	Escribir 'El total de facturas es: ', acumulador
