@@ -1,5 +1,5 @@
 // 1 - Ingresar N sueldos e indicar su suma y su promedio, imprimir resultados
-Función promedioSueldos <- obtenerPromedioSueldos
+Función obtenerPromedioSueldos(promedioSueldos Por Referencia)
 	continuar <- Verdadero
 	acumulador <- 0
 	contador <- 0
@@ -20,6 +20,6 @@ FinFunción
 
 Algoritmo ejercicio01
 	Definir promedioSueldos Como Real
-	promedioSueldos <- obtenerPromedioSueldos
+	obtenerPromedioSueldos(promedioSueldos)
 	Escribir 'Su promedio es: ', promedioSueldos
 FinAlgoritmo

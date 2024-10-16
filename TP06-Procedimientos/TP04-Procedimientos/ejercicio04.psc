@@ -17,14 +17,24 @@ Función continuar <- deseaContinuar
 	FinSi
 FinFunción
 
+Función mostrarResultados(contadorPositivos,contadorNegativos,contadorCeros,contador)
+	promedioPositivos <- calcularPromedio(contadorPositivos,contador)
+	Escribir 'Su promedio de positvos es: ', promedioPositivos
+	promedioNegativos <- calcularPromedio(contadorNegativos,contador)
+	Escribir 'Su promedio de negativos es: ', promedioNegativos
+	promedioCeros <- calcularPromedio(contadorCeros,contador)
+	Escribir 'Su promedio de ceros es: ', promedioCeros
+FinFunción
+
 Algoritmo ejercicio04
+	Definir contador, contadorCeros, contadorNegativos, contadorPositivos Como Entero
 	continuar <- Verdadero
 	contadorPositivos <- 0
 	contadorNegativos <- 0
 	contadorCeros <- 0
 	contador <- 0
 	Mientras continuar Hacer
-		Escribir 'Ingrese un valor:'
+		Escribir 'Ingrese un valor: '
 		Leer nuevoValor
 		contador <- sumarValor(contador,1)
 		Si nuevoValor>0 Entonces
@@ -38,10 +48,5 @@ Algoritmo ejercicio04
 		FinSi
 		continuar <- deseaContinuar
 	FinMientras
-	promedioPositivos <- calcularPromedio(contadorPositivos,contador)
-	Escribir 'Su promedio de positvos es: ', promedioPositivos
-	promedioNegativos <- calcularPromedio(contadorNegativos,contador)
-	Escribir 'Su promedio de negativos es: ', promedioNegativos
-	promedioCeros <- calcularPromedio(contadorCeros,contador)
-	Escribir 'Su promedio de ceros es: ', promedioCeros
+	mostrarResultados(contadorPositivos,contadorNegativos,contadorCeros,contador)
 FinAlgoritmo
