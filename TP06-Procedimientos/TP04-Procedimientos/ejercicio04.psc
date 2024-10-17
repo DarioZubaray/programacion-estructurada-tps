@@ -1,13 +1,17 @@
 // 4 - Ingresar N valores, calcular e imprimir el promedio de positivos, de negativos y cantidad de ceros
-Función valorRetorno <- sumarValor(valor1,valor2)
-	valorRetorno <- valor1+valor2
+Función sumarValor(valor1 Por Referencia,valor2)
+	valor1 <- valor1+valor2
 FinFunción
 
-Función promedio <- calcularPromedio(numerador,denominador)
-	promedio <- (numerador*100.0)/denominador
+Función calcularPromedio(numerador,denominador,promedio Por Referencia)
+	Si denominador<>0 Entonces
+		promedio <- (numerador*1.0)/denominador
+	SiNo
+		promedio <- 0.0
+	FinSi
 FinFunción
 
-Función continuar <- deseaContinuar
+Función deseaContinuar(continuar Por Referencia)
 	Escribir 'Desea ingresar un nuevo valor? (s/n)'
 	Leer respuestaContinuar
 	Si respuestaContinuar='n' O respuestaContinuar='N' Entonces
@@ -17,36 +21,41 @@ Función continuar <- deseaContinuar
 	FinSi
 FinFunción
 
-Función mostrarResultados(contadorPositivos,contadorNegativos,contadorCeros,contador)
-	promedioPositivos <- calcularPromedio(contadorPositivos,contador)
-	Escribir 'Su promedio de positvos es: ', promedioPositivos
-	promedioNegativos <- calcularPromedio(contadorNegativos,contador)
-	Escribir 'Su promedio de negativos es: ', promedioNegativos
-	promedioCeros <- calcularPromedio(contadorCeros,contador)
-	Escribir 'Su promedio de ceros es: ', promedioCeros
+Función mostrarResultados(contadorPositivo,acumuladorPositivo,contadorNegativo,acumuladorNegativo,contadorCero)
+	Definir promedioPositivo, promedioNegativo Como Real
+	Escribir 'Se registraron {', contadorPositivo, '} entradas por un total {', acumuladorPositivo, '}, '
+	calcularPromedio(acumuladorPositivo,contadorPositivo,promedioPositivo)
+	Escribir 'Su promedio de positivos es: ', promedioPositivo
+	Escribir 'Se registraron {', contadorNegativo, '} entradas por un total {', acumuladorNegativo, '}, '
+	calcularPromedio(acumuladorNegativo,contadorNegativo,promedioNegativo)
+	Escribir 'Su promedio de negativos es: ', promedioNegativo
+	Escribir 'Cantidad de ceros es: ', contadorCero
 FinFunción
 
 Algoritmo ejercicio04
-	Definir contador, contadorCeros, contadorNegativos, contadorPositivos Como Entero
+	Definir contadorCeros, contadorNegativo, acumuladorNegativo, contadorPositivo, acumuladorPositivo Como Entero
+	contadorPositivo <- 0
+	acumuladorPositivo <- 0
+	contadorNegativo <- 0
+	acumuladorNegativo <- 0
+	contadorCero <- 0
 	continuar <- Verdadero
-	contadorPositivos <- 0
-	contadorNegativos <- 0
-	contadorCeros <- 0
-	contador <- 0
 	Mientras continuar Hacer
 		Escribir 'Ingrese un valor: '
 		Leer nuevoValor
-		contador <- sumarValor(contador,1)
+		sumarValor(contador,1)
 		Si nuevoValor>0 Entonces
-			contadorPositivos <- sumarValor(contadorPositivos,1)
+			sumarValor(contadorPositivo,1)
+			sumarValor(acumuladorPositivo,nuevoValor)
 		SiNo
 			Si nuevoValor<0 Entonces
-				contadorNegativos <- sumarValor(contadorNegativos,1)
+				sumarValor(contadorNegativo,1)
+				sumarValor(acumuladorNegativo,nuevoValor)
 			SiNo
-				contadorCeros <- sumarValor(contadorCeros,1)
+				sumarValor(contadorCero,1)
 			FinSi
 		FinSi
-		continuar <- deseaContinuar
+		deseaContinuar(continuar)
 	FinMientras
-	mostrarResultados(contadorPositivos,contadorNegativos,contadorCeros,contador)
+	mostrarResultados(contadorPositivo,acumuladorPositivo,contadorNegativo,acumuladorNegativo,contadorCero)
 FinAlgoritmo

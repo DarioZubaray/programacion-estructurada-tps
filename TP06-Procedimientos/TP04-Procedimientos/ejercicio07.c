@@ -1,103 +1,55 @@
-/* Este codigo ha sido generado por el modulo psexport 20230904-w32 de PSeInt.
-Es posible que el codigo generado no sea completamente correcto. Si encuentra
-errores por favor reportelos en el foro (http://pseint.sourceforge.net). */
-
 #include<stdio.h>
 #include<stdbool.h>
 #include<string.h>
 
-/* En C no se puede dimensionar un arreglo estático con una dimensión no constante.
-   PSeInt sobredimensionará el arreglo utilizando un valor simbólico ARREGLO_MAX.
-   Sería posible crear un arreglo dinámicamente con los operadores new y delete, pero
-   este mecanismo aún no está soportado en las traducciones automáticas de PSeInt. */
-#define ARREGLO_MAX 100
-
-/* En C no hay variables para guardar cadenas de texto, sino que debe construirse
-   un arreglo de caracteres (tipo char). El tamaño del arreglo determina la longitud
-   máxima que puede tener la cadena que guarda (tamaño-1, por el caracter de terminación).
-   La constante MAX_STRLEN define el tamaño máximo que se utiliza en este programa para
-   cualquier cadena. */
-#define MAX_STRLEN 256
-
-/* Para las variables que no se pudo determinar el tipo se utiliza la constante
-   SIN_TIPO. El usuario debe reemplazar sus ocurrencias por el tipo adecuado
-   (usualmente int,float,bool, o char[]). */
-#define SIN_TIPO float
-
-// Declaraciones adelantadas de las funciones
-void deseacontinuar(SIN_TIPO continuar por referencia);
-void validarmejortiempo(SIN_TIPO tiemposegundos, SIN_TIPO nuevoauto, SIN_TIPO mejortiempo por referencia, SIN_TIPO mejorauto por referencia);
-void validarpeortiempo(SIN_TIPO tiemposegundos, SIN_TIPO nuevoauto, SIN_TIPO peortiempo por referencia, SIN_TIPO peorauto por referencia);
-void mostrarresultados(SIN_TIPO mejorauto, SIN_TIPO mejortiempo, SIN_TIPO peorauto, SIN_TIPO peortiempo);
-
 /* 7 - En una carrera de autos se ingresan el numero de auto y su tiempo,  */
 /* indicar e imprimir cual gano y cual fue el ultimo */
-void deseacontinuar(SIN_TIPO continuar por referencia) {
-	bool continuar;
-	char respuestacontinuar[MAX_STRLEN];
+
+void deseaContinuar(bool* continuar) {
+	char respuestaContinuar[1];
 	printf("Desea ingresar un nuevo valor? (s/n)\n");
-	scanf("%f", respuestacontinuar);
-	if (strcmp(respuestacontinuar, "n")==0 || strcmp(respuestacontinuar, "N")==0) {
-		continuar = false;
+	scanf(" %c", respuestaContinuar);
+	if (strcmp(respuestaContinuar, "n") == 0 || strcmp(respuestaContinuar, "N") == 0) {
+		*continuar = false;
 	} else {
-		continuar = true;
+		*continuar = true;
 	}
 }
 
-void validarmejortiempo(SIN_TIPO tiemposegundos, SIN_TIPO nuevoauto, SIN_TIPO mejortiempo por referencia, SIN_TIPO mejorauto por referencia) {
-	SIN_TIPO mejorauto;
-	float mejortiempo;
-	SIN_TIPO nuevoauto;
-	float tiemposegundos;
-	if (mejortiempo==0 || tiemposegundos<mejortiempo) {
-		mejortiempo = tiemposegundos;
-		mejorauto = nuevoauto;
+void validarMejorTiempo(int tiempoSegundos, int nuevoAuto, int* mejorTiempo, int* mejorAuto) {
+	if (*mejorTiempo == 0 || tiempoSegundos < *mejorTiempo) {
+		*mejorTiempo = tiempoSegundos;
+		*mejorAuto = nuevoAuto;
 	}
 }
 
-void validarpeortiempo(SIN_TIPO tiemposegundos, SIN_TIPO nuevoauto, SIN_TIPO peortiempo por referencia, SIN_TIPO peorauto por referencia) {
-	SIN_TIPO nuevoauto;
-	SIN_TIPO peorauto;
-	SIN_TIPO peortiempo;
-	SIN_TIPO tiemposegundos;
-	if (tiemposegundos>peortiempo) {
-		peortiempo = tiemposegundos;
-		peorauto = nuevoauto;
+void validarPeorTiempo(int tiempoSegundos, int nuevoAuto, int* peorTiempo, int* peorAuto) {
+	if (*peorTiempo == 0 || tiempoSegundos > *peorTiempo) {
+		*peorTiempo = tiempoSegundos;
+		*peorAuto = nuevoAuto;
 	}
 }
 
-void mostrarresultados(SIN_TIPO mejorauto, SIN_TIPO mejortiempo, SIN_TIPO peorauto, SIN_TIPO peortiempo) {
-	SIN_TIPO mejorauto;
-	SIN_TIPO mejortiempo;
-	SIN_TIPO peorauto;
-	SIN_TIPO peortiempo;
-	printf("El auto mas rapido fue: %f con un tiempo de: %f\n", mejorauto, mejortiempo);
-	printf("El auto mas lento fue: %f con un tiempo de: %f\n", peorauto, peortiempo);
+void mostrarResultados(int mejorAuto, int mejorTiempo, int peorAuto, int peorTiempo) {
+	printf("El auto mas rapido fue: {%i} con un tiempo de: {%i}\n", mejorAuto, mejorTiempo);
+	printf("El auto mas lento fue: {%i} con un tiempo de: {%i}\n", peorAuto, peorTiempo);
 }
 
 int main() {
-	bool continuar;
-	SIN_TIPO deseacontinuar[ARREGLO_MAX];
-	char mejorauto[MAX_STRLEN];
-	int mejortiempo;
-	SIN_TIPO mostrarresultados[ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX];
-	int nuevoauto;
-	char peorauto[MAX_STRLEN];
-	int peortiempo;
-	SIN_TIPO tiemposegundos;
-	int timposegundos;
-	SIN_TIPO validarmejortiempo[ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX];
-	continuar = true;
+	bool continuar = true;
+	int mejorAuto = 0, mejorTiempo = 0;
+	int peorAuto = 0, peorTiempo = 0;
+	int nuevoAuto;
+	int tiempoSegundos;
 	while (continuar) {
-		printf("Ingrese numero de auto: \n");
-		scanf("%f", nuevoauto);
+		printf("Ingrese el numero de auto: \n");
+		scanf("%i", &nuevoAuto);
 		printf("Ingrese su tiempo en seg: \n");
-		scanf("%f", tiemposegundos);
-		validarmejortiempo[tiemposegundos-1][nuevoauto-1][mejortiempo-1][mejorauto-1];
-		validarmejortiempo[timposegundos-1][nuevoauto-1][peortiempo-1][peorauto-1];
-		deseacontinuar[continuar-1];
+		scanf("%i", &tiempoSegundos);
+		validarMejorTiempo(tiempoSegundos, nuevoAuto, &mejorTiempo, &mejorAuto);
+		validarPeorTiempo(tiempoSegundos, nuevoAuto, &peorTiempo, &peorAuto);
+		deseaContinuar(&continuar);
 	}
-	mostrarresultados[mejorauto-1][mejortiempo-1][peorauto-1][peortiempo-1];
+	mostrarResultados(mejorAuto, mejorTiempo, peorAuto, peorTiempo);
 	return 0;
 }
-
