@@ -1,4 +1,5 @@
 # programacion-estructurada-tps
+
 Desarrollo de Trabajos Prácticos para Programación Estructurada
 
 - [TP 1 - Mi Primer Programa en C](/TP01/)
@@ -6,5 +7,5 @@ Desarrollo de Trabajos Prácticos para Programación Estructurada
 - [TP 3 - Estructuras de repetición exactas](/TP03/)
 - [TP 4 - Estructuras de repetición Inexactas](/TP04/)
 - [Parcial 1](/Parcial01)
-- [TP 5 - Funciones sobre TP03 y TP04](/TP05-Funciones/)
-- [TP 6 - Procedimientos sobre TP03 y TP04](/TP06-Procedimientos/)
+- [TP - Funciones sobre TP03 y TP04](/TP-Funciones/)
+- [TP - Procedimientos sobre TP03 y TP04](/TP-Procedimientos/)

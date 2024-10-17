@@ -1,4 +1,4 @@
-# FUNCIONES
+# TP - PROCEDIMIENTOS
 
 ### TP 3 - Estructuras de repetición exactas
 
