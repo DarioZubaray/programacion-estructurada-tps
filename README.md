@@ -9,3 +9,4 @@ Desarrollo de Trabajos Prácticos para Programación Estructurada
 - [Parcial 1](/Parcial01)
 - [TP - Funciones sobre TP03 y TP04](/TP-Funciones/)
 - [TP - Procedimientos sobre TP03 y TP04](/TP-Procedimientos/)
+- [TP 5 - Estructuras estáticas](/TP05/)
