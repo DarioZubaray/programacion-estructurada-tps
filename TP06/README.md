@@ -43,7 +43,7 @@ Número defactura
 Número de mozo
 Número de mesa
 Cantidad de personas que comieron
-Monto dela cuenta
+Monto de la cuenta
 ```
    Se desea saber lo siguiente:
 
