@@ -29,8 +29,10 @@ errores por favor reportelos en el foro (http://pseint.sourceforge.net). */
    otra variable con scanf. */
 
 // Declaraciones adelantadas de las funciones
-void definircategorias(SIN_TIPO categoriavalor);
-void mostrarcategorias(SIN_TIPO categoria1, SIN_TIPO categoria2, SIN_TIPO categoria3);
+void definircategorias(SIN_TIPO categorias, SIN_TIPO atributo);
+void mostrarejemplototalcategorias(SIN_TIPO totalcategorias);
+void mostrarcategorias(SIN_TIPO categorias, SIN_TIPO totalcategorias, SIN_TIPO atributoamostrar);
+void mostrarporcentualcategorias(SIN_TIPO categorias, SIN_TIPO totalcategorias, SIN_TIPO acumulador_categoria, SIN_TIPO sueldototal);
 
 /* 3- En una empresa los empleados cobran un sueldo según la categoria, son 50 empleados y 3 categorías */
 /* Categoría1 = $ 1500, Categoría2 = $ 2000, Categoría3 = $ 2500 */
@@ -40,84 +42,100 @@ void mostrarcategorias(SIN_TIPO categoria1, SIN_TIPO categoria2, SIN_TIPO catego
 /* - Sueldo promedio general */
 /* - Sueldo máximo y a quién pertenece */
 /* - Qué porcentual sobre el total de sueldos representa cada total de sueldos de las categorías */
-void definircategorias(SIN_TIPO categoriavalor) {
-	float categoriavalor;
-	categoriavalor[0] = 1500;
-	categoriavalor[1] = 2000;
-	categoriavalor[2] = 2500;
+void definircategorias(SIN_TIPO categorias, SIN_TIPO atributo) {
+	float categorias;
+	categorias[0][atributo-1] = 1500;
+	categorias[1][atributo-1] = 2000;
+	categorias[2][atributo-1] = 2500;
 }
 
-void mostrarcategorias(SIN_TIPO categoria1, SIN_TIPO categoria2, SIN_TIPO categoria3) {
-	SIN_TIPO categoria1;
-	SIN_TIPO categoria2;
-	SIN_TIPO categoria3;
-	printf("  1: %f\n", categoria1);
-	printf("  2: %f\n", categoria2);
-	printf("  3: %f\n", categoria3);
+void mostrarejemplototalcategorias(SIN_TIPO totalcategorias) {
+	float iterador;
+	float totalcategorias;
+	printf("Ej: (");
+	for (iterador=1; iterador<=totalcategorias; ++iterador) {
+		printf("%f, ", iterador);
+	}
+	printf(")\n");
+}
+
+void mostrarcategorias(SIN_TIPO categorias, SIN_TIPO totalcategorias, SIN_TIPO atributoamostrar) {
+	SIN_TIPO categorias;
+	float iterador;
+	float totalcategorias;
+	for (iterador=1; iterador<=totalcategorias; ++iterador) {
+		printf("..%f: %f\n", iterador, categorias[iterador-1][atributoamostrar-1]);
+	}
+}
+
+void mostrarporcentualcategorias(SIN_TIPO categorias, SIN_TIPO totalcategorias, SIN_TIPO acumulador_categoria, SIN_TIPO sueldototal) {
+	float categorias;
+	float categoriasueldototal;
+	float iterador;
+	float sueldototal;
+	float totalcategorias;
+	for (iterador=1; iterador<=totalcategorias; ++iterador) {
+		categoriasueldototal = categorias[iterador-1][acumulador_categoria-1]*100/sueldototal;
+		printf("..%f: %f\n", iterador, categoriasueldototal);
+	}
 }
 
 int main() {
+	int acumulador_categoria;
 	int antiguedad;
 	int antiguedadbono;
 	int antiguedadempleado;
 	int categoria;
-	int categoria1contador;
-	int categoria1totalsueldo;
-	int categoria2contador;
-	int categoria2totalsueldo;
-	int categoria3contador;
-	int categoria3totalsueldo;
+	int categoriaactual;
 	int categoriaempleado;
-	float categoriavalor[3];
-	SIN_TIPO definircategorias[ARREGLO_MAX];
+	float categorias[ARREGLO_MAX][3];
+	int contador_categoria;
+	SIN_TIPO definircategorias[ARREGLO_MAX][ARREGLO_MAX];
 	int empleados[ARREGLO_MAX][3];
 	char empleadosnombres[MAX_STRLEN][ARREGLO_MAX];
 	float iterador;
 	SIN_TIPO mostrarcategorias[ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX];
+	SIN_TIPO mostrarejemplototalcategorias[ARREGLO_MAX];
+	SIN_TIPO mostrarporcentualcategorias[ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX];
 	char nombreempleado[MAX_STRLEN];
 	int sueldo;
 	int sueldomaximo;
 	char sueldomaximoempleado[MAX_STRLEN];
 	int sueldopromediogeneralacumulador;
 	int sueldototal;
+	int totalcategorias;
 	int totalempleados;
+	int valor_categoria;
 	totalempleados = 5;
+	totalcategorias = 3;
 	antiguedadbono = 100;
 	sueldo = 1;
 	categoria = 2;
 	antiguedad = 3;
+	valor_categoria = 1;
+	contador_categoria = 2;
+	acumulador_categoria = 3;
 	/* sueldo, categoria, antiguedad */
-	definircategorias[categoriavalor-1];
+	definircategorias[categorias-1][valor_categoria-1];
+	/* valor, contador, acumulador */
 	for (iterador=1; iterador<=totalempleados; ++iterador) {
 		printf("Ingrese el nombre del empleado: \n");
 		scanf("%s", nombreempleado);
 		empleadosnombres[iterador-1] = nombreempleado;
-		printf("Ingrese la categoria del empleado: (1, 2, o 3)\n");
+		printf("Ingrese la categoria del empleado: ");
+		mostrarejemplototalcategorias[totalcategorias-1];
 		scanf("%i", &categoriaempleado);
 		empleados[iterador-1][categoria-1] = categoriaempleado;
 		printf("Ingrese la antiguedad del empleado: (en años)\n");
 		scanf("%i", &antiguedadempleado);
 		empleados[iterador-1][antiguedad-1] = antiguedadempleado;
-		empleados[iterador-1][sueldo-1] = categoriavalor[categoriaempleado-1]+(antiguedadempleado*antiguedadbono);
+		empleados[iterador-1][sueldo-1] = categorias[categoriaempleado-1][valor_categoria-1]+(antiguedadempleado*antiguedadbono);
 		printf("Empleado %s registrado correctamente!\n", nombreempleado);
 	}
 	for (iterador=1; iterador<=totalempleados; ++iterador) {
-		switch (empleados[iterador-1][categoria-1]) {
-		case 1:
-			categoria1contador = categoria1contador+1;
-			categoria1totalsueldo = categoria1totalsueldo+empleados[iterador-1][sueldo-1];
-			break;
-		case 2:
-			categoria2contador = categoria2contador+1;
-			categoria2totalsueldo = categoria2totalsueldo+empleados[iterador-1][sueldo-1];
-			break;
-		case 3:
-			categoria3contador = categoria3contador+1;
-			categoria3totalsueldo = categoria3totalsueldo+empleados[iterador-1][sueldo-1];
-			break;
-		default:
-			printf("La categoria ingresada %f no es valida.\n", empleados[iterador-1][categoria-1]);
-		}
+		categoriaactual = empleados[iterador-1][categoria-1];
+		categorias[categoriaactual-1][contador_categoria-1] = categorias[categoriaactual-1][contador_categoria-1]+1;
+		categorias[categoriaactual-1][acumulador_categoria-1] = categorias[categoriaactual-1][acumulador_categoria-1]+empleados[iterador-1][sueldo-1];
 		sueldopromediogeneralacumulador = sueldopromediogeneralacumulador+empleados[iterador-1][sueldo-1];
 		if (sueldomaximo<empleados[iterador-1][sueldo-1]) {
 			sueldomaximo = empleados[iterador-1][sueldo-1];
@@ -126,13 +144,13 @@ int main() {
 		sueldototal = sueldototal+empleados[iterador-1][sueldo-1];
 	}
 	printf("Empleados por categorias: \n");
-	mostrarcategorias[categoria1contador-1][categoria2contador-1][categoria3contador-1];
+	mostrarcategorias[categorias-1][totalcategorias-1][contador_categoria-1];
 	printf("Total de sueldos pagados por categoria: \n");
-	mostrarcategorias[categoria1totalsueldo-1][categoria2totalsueldo-1][categoria3totalsueldo-1];
+	mostrarcategorias[categorias-1][totalcategorias-1][acumulador_categoria-1];
 	printf("Sueldo promedio general: %f\n", sueldopromediogeneralacumulador/totalempleados);
 	printf("El sueldo maximo es de $%i y pertence a %s\n", sueldomaximo, sueldomaximoempleado);
 	printf("El porcentual sobre el total de sueldos es:\n");
-	mostrarcategorias[(categoria1totalsueldo*100/sueldototal)-1][(categoria2totalsueldo*100/sueldototal)-1][(categoria3totalsueldo*100/sueldototal)-1];
+	mostrarporcentualcategorias[categorias-1][totalcategorias-1][acumulador_categoria-1][sueldototal-1];
 	return 0;
 }
 
