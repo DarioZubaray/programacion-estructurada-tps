@@ -1,0 +1,8 @@
+Se ingresan n° de factura, n° de vendedor e importe.
+Los vendedores se llevan una comision del 10% por cada venta, se termina con número de factura = 0
+ y se desea conocer:
+
+- El monto total de facturas
+- Las comisiones de cada vendedor
+- El porcentual de ventas de cada vendedor
+- El promedio del valor de las facturas
