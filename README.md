@@ -11,3 +11,4 @@ Desarrollo de Trabajos Prácticos para Programación Estructurada
 - [TP - Procedimientos sobre TP03 y TP04](/TP-Procedimientos/)
 - [TP 5 - Estructuras estáticas](/TP05/)
 - [TP 6 - Estructuras estáticas #2](/TP06/)
+- [TP 7 - Ejercicios combinados](/TP07/)
