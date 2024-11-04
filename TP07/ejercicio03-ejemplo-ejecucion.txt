@@ -1,0 +1,39 @@
+============================================
+El analista {7} trabajó menos en el proyecto [1].
+============================================
+Sueldo de cada analista:
+....El analista {1} de nombre Santiago tiene un sueldo de $4700.-
+....El analista {2} de nombre Mateo tiene un sueldo de $4500.-
+....El analista {3} de nombre Sebastián tiene un sueldo de $4200.-
+....El analista {4} de nombre Valentina tiene un sueldo de $1300.-
+....El analista {5} de nombre María tiene un sueldo de $1800.-
+....El analista {6} de nombre Sofía tiene un sueldo de $400.-
+....El analista {7} de nombre Lucas tiene un sueldo de $3400.-
+....El analista {8} de nombre Alejandro tiene un sueldo de $3700.-
+....El analista {9} de nombre Gabriela tiene un sueldo de $1800.-
+....El analista {10} de nombre Daniel tiene un sueldo de $3700.-
+============================================
+El analista {1} de nombre Santiago cobro $4700.
+============================================
+Cantidad de analistas que hayan trabajado menos de 5 hs en alguno de los proyectos:
+....El analista {2} trabajó (3) hs en el proyecto [4].
+....El analista {3} trabajó (3) hs en el proyecto [3].
+....El analista {4} trabajó (3) hs en el proyecto [6].
+....El analista {4} trabajó (4) hs en el proyecto [9].
+....El analista {6} trabajó (2) hs en el proyecto [13].
+....El analista {8} trabajó (1) hs en el proyecto [15].
+....El analista {10} trabajó (1) hs en el proyecto [3].
+============================================
+Imprimiendo, ordenado en forma descendente por sueldo de los analista: nombre, valor de la hora y sueldo:
+....El analista {1}-Santiago con un valor de horas de 15 $/hs, tiene un sueldo de $4700.-
+....El analista {2}-Mateo con un valor de horas de 4 $/hs, tiene un sueldo de $4500.-
+....El analista {3}-Sebastián con un valor de horas de 17 $/hs, tiene un sueldo de $4200.-
+....El analista {10}-Daniel con un valor de horas de 38 $/hs, tiene un sueldo de $3700.-
+....El analista {8}-Alejandro con un valor de horas de 31 $/hs, tiene un sueldo de $3700.-
+....El analista {7}-Lucas con un valor de horas de 7 $/hs, tiene un sueldo de $3400.-
+....El analista {9}-Gabriela con un valor de horas de 30 $/hs, tiene un sueldo de $1800.-
+....El analista {5}-María con un valor de horas de 40 $/hs, tiene un sueldo de $1800.-
+....El analista {4}-Valentina con un valor de horas de 19 $/hs, tiene un sueldo de $1300.-
+....El analista {6}-Sofía con un valor de horas de 32 $/hs, tiene un sueldo de $400.-
+============================================
+*** Ejecución Finalizada. ***
