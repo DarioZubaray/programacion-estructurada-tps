@@ -1,318 +1,202 @@
-/* Este codigo ha sido generado por el modulo psexport 20230904-w32 de PSeInt.
-Es posible que el codigo generado no sea completamente correcto. Si encuentra
-errores por favor reportelos en el foro (http://pseint.sourceforge.net). */
-
 #include<stdio.h>
-#include<stdlib.h>
+#include<stdlib.h> 
+#include<string.h>
 #include<stdbool.h>
 
-/* En C no se puede dimensionar un arreglo estático con una dimensión no constante.
-   PSeInt sobredimensionará el arreglo utilizando un valor simbólico ARREGLO_MAX.
-   Sería posible crear un arreglo dinámicamente con los operadores new y delete, pero
-   este mecanismo aún no está soportado en las traducciones automáticas de PSeInt. */
-#define ARREGLO_MAX 100
-
-/* En C no hay variables para guardar cadenas de texto, sino que debe construirse
-   un arreglo de caracteres (tipo char). El tamaño del arreglo determina la longitud
-   máxima que puede tener la cadena que guarda (tamaño-1, por el caracter de terminación).
-   La constante MAX_STRLEN define el tamaño máximo que se utiliza en este programa para
-   cualquier cadena. */
-#define MAX_STRLEN 256
-
-/* Para las variables que no se pudo determinar el tipo se utiliza la constante
-   SIN_TIPO. El usuario debe reemplazar sus ocurrencias por el tipo adecuado
-   (usualmente int,float,bool, o char[]). */
-#define SIN_TIPO float
-
-// Declaraciones adelantadas de las funciones
-void cargaranalistas(SIN_TIPO analista, SIN_TIPO totalanalistas, SIN_TIPO totalproyectos, SIN_TIPO cantidad_horas);
-void cargaranalistassueldos(SIN_TIPO analistasueldo, SIN_TIPO totalanalistas, SIN_TIPO sueldo, SIN_TIPO valor_horas);
-void cargaranalistasnombres(SIN_TIPO analistanombres, SIN_TIPO totalanalistas);
-void mostrarhorastrabajadasporanalista(SIN_TIPO analistas, SIN_TIPO totalanalistas, SIN_TIPO cantidad_horas);
-void mostrarhorasporanalistaporproyecto(SIN_TIPO analistas, SIN_TIPO totalanalistas, SIN_TIPO totalproyectos, SIN_TIPO cantidad_horas);
-void mostrarhorastotalporproyecto(SIN_TIPO analistas, SIN_TIPO totalanalistas, SIN_TIPO totalproyectos, SIN_TIPO cantidad_horas);
-void mostrarhorastotalenproyecto(SIN_TIPO numeroproyecto, SIN_TIPO analistas, SIN_TIPO totalanalistas, SIN_TIPO totalproyectos, SIN_TIPO cantidad_horas);
-void mostrarsueldoporanalista(SIN_TIPO analistasueldo, SIN_TIPO analistanombres, SIN_TIPO totalanalistas, SIN_TIPO sueldo);
-void mostraranalistaconmayorcobro(SIN_TIPO analistanombres, SIN_TIPO analistasueldo, SIN_TIPO totalanalistas, SIN_TIPO sueldo);
-void mostraranalistaconmenoscantidadhorasporporyectos(SIN_TIPO cantidadhoras, SIN_TIPO analistas, SIN_TIPO totalanalistas, SIN_TIPO totalproyectos, SIN_TIPO cantidad_horas);
-void ordernarporburbujeo(SIN_TIPO analistasueldo, SIN_TIPO totalanalistas, SIN_TIPO sueldo, SIN_TIPO indices);
-void mostrarnombrevalorhorasueldoporsueldodescendente(SIN_TIPO analistas, SIN_TIPO analistasueldo, SIN_TIPO analistanombres, SIN_TIPO totalanalistas, SIN_TIPO totalproyectos, SIN_TIPO cantidad_horas, SIN_TIPO sueldo, SIN_TIPO valor_horas);
-
-/* 3- Una consultora tiene 10 analistas y 15 proyectos en los que trabajan indistintamente, a fin de mes cada analista eleva una planilla con los siguientes datos: */
-/* Numero de analista, Numero de proyecto, Cantidad de hs trabajadas */
-/* En memoria se debera cargar previamente el nombre de los analistas y el valor hora. */
-/* Se desea saber:	 */
-/* - Cantidad de hs. trabajadas en total por cada analista. */
-/* - Total de horas trabajadas por cada analista en cada proyecto. */
-/* - Total de hs trabajadas sobre cada proyecto. */
-/* - Qué analista trabajó menos en el proyecto 1. */
-/* - Sueldo de cada analista. */
-/* - Nombre del analista que cobró más. */
-/* - Cantidad de analistas que hayan trabajado menos de 5 hs en alguno de los proyectos. */
-/* - Imprimir ordenado en forma descendente por sueldo de los analista: nombre, valor de la hora y sueldo */
-void cargaranalistas(SIN_TIPO analista, SIN_TIPO totalanalistas, SIN_TIPO totalproyectos, SIN_TIPO cantidad_horas) {
-	int analista;
-	float iteradori;
-	float iteradorj;
-	int numeroaleatorio;
-	float totalanalistas;
-	float totalproyectos;
-	for (iteradori=1; iteradori<=totalanalistas; ++iteradori) {
-		for (iteradorj=1; iteradorj<=totalproyectos; ++iteradorj) {
-			numeroaleatorio = (rand()%24);
-			if (numeroaleatorio>15) {
-				analista[iteradori-1][iteradorj-1][cantidad_horas-1] = (rand()%36);
+void cargarAnalistas(int analista[10][15][1], int totalAnalistas, int totalProyectos, int CANTIDAD_HORAS) {
+	int numeroAleatorio;
+	for (int i = 0; i < totalAnalistas; i++) {
+		for (int j = 0; j < totalProyectos; j++) {
+			numeroAleatorio = (rand()%24);
+			if (numeroAleatorio > 15) {
+				analista[i][j][CANTIDAD_HORAS] = (rand()%36);
 			} else {
-				analista[iteradori-1][iteradorj-1][cantidad_horas-1] = 0;
+				analista[i][j][CANTIDAD_HORAS] = 0;
 			}
 		}
 	}
 }
 
-void cargaranalistassueldos(SIN_TIPO analistasueldo, SIN_TIPO totalanalistas, SIN_TIPO sueldo, SIN_TIPO valor_horas) {
-	int analistasueldo;
-	float iteradori;
-	float totalanalistas;
-	for (iteradori=1; iteradori<=totalanalistas; ++iteradori) {
-		analistasueldo[iteradori-1][sueldo-1] = (rand()%50)*100;
-		analistasueldo[iteradori-1][valor_horas-1] = (rand()%50);
+void cargarAnalistasSueldos(int analistaSueldo[10][2], int totalAnalistas, int SUELDO, int VALOR_HORAS) {
+	for (int i = 0; i < totalAnalistas; i++) {
+		analistaSueldo[i][SUELDO] = (rand()%50)*100;
+		analistaSueldo[i][VALOR_HORAS] = (rand()%50);
 	}
 }
 
-void cargaranalistasnombres(SIN_TIPO analistanombres, SIN_TIPO totalanalistas) {
-	char analistanombres[MAX_STRLEN];
-	analistanombres[0] = "Santiago";
-	analistanombres[1] = "Mateo";
-	analistanombres[2] = "Sebastián";
-	analistanombres[3] = "Valentina";
-	analistanombres[4] = "María";
-	analistanombres[5] = "Sofía";
-	analistanombres[6] = "Lucas";
-	analistanombres[7] = "Alejandro";
-	analistanombres[8] = "Gabriela";
-	analistanombres[totalanalistas-1] = "Daniel";
+void cargarAnalistasNombres(char *analistaNombres[], int totalAnalistas) {
+	analistaNombres[0] = "Santiago";
+	analistaNombres[1] = "Mateo";
+	analistaNombres[2] = "Sebastian";
+	analistaNombres[3] = "Valentina";
+	analistaNombres[4] = "Maria";
+	analistaNombres[5] = "Sofia";
+	analistaNombres[6] = "Lucas";
+	analistaNombres[7] = "Alejandro";
+	analistaNombres[8] = "Gabriela";
+	analistaNombres[totalAnalistas-1] = "Daniel";
 }
 
-void mostrarhorastrabajadasporanalista(SIN_TIPO analistas, SIN_TIPO totalanalistas, SIN_TIPO cantidad_horas) {
-	float analistas;
-	int horastrabajadas;
-	float iteradori;
-	float iteradorj;
-	float totalanalistas;
+void mostrarhorasTrabajadasPorAnalista(int analista[10][15][1], int totalAnalistas, int CANTIDAD_HORAS) {
 	printf("Cantidad de hs. trabajadas en total por cada analista: \n");
-	for (iteradori=1; iteradori<=totalanalistas; ++iteradori) {
-		horastrabajadas = 0;
-		for (iteradorj=1; iteradorj<=totalanalistas; ++iteradorj) {
-			horastrabajadas = horastrabajadas+analistas[iteradori-1][iteradorj-1][cantidad_horas-1];
+	int horasTrabajadas;
+	for (int i = 0; i < totalAnalistas; i++) {
+		horasTrabajadas = 0;
+		for (int j = 0; j < totalAnalistas; j++) {
+			horasTrabajadas += analista[i][j][CANTIDAD_HORAS];
 		}
-		printf("....El analista {%f} trabajo un total de (%i) hs.\n", iteradori, horastrabajadas);
+		printf("....El analista {%i} trabajo un total de (%i) hs.\n", i+1, horasTrabajadas);
 	}
 }
 
-void mostrarhorasporanalistaporproyecto(SIN_TIPO analistas, SIN_TIPO totalanalistas, SIN_TIPO totalproyectos, SIN_TIPO cantidad_horas) {
-	float analistas;
-	float iteradori;
-	float iteradorj;
-	float totalanalistas;
-	float totalproyectos;
+void mostrarHorasPorAnalistaPorProyecto(int analista[10][15][1], int totalAnalistas, int totalProyectos, int CANTIDAD_HORAS) {
 	printf("Total de horas trabajadas por cada analista en cada proyecto.\n");
-	for (iteradorj=1; iteradorj<=totalproyectos; ++iteradorj) {
-		printf("En el proyecto [%f] trabajaron: \n", iteradorj);
-		for (iteradori=1; iteradori<=totalanalistas; ++iteradori) {
-			if (analistas[iteradori-1][iteradorj-1][cantidad_horas-1]>0) {
-				printf("....El analista {%f} con un total de (%f) hs.\n", iteradori, analistas[iteradori-1][iteradorj-1][cantidad_horas-1]);
+	for (int j = 0; j < totalProyectos; j++) {
+		printf("En el proyecto [%i] trabajaron: \n", j+1);
+		for (int i = 0; i < totalAnalistas; i++) {
+			if (analista[i][j][CANTIDAD_HORAS] > 0) {
+				printf("....El analista {%i} con un total de (%i) hs.\n", i+1, analista[i][j][CANTIDAD_HORAS]);
 			}
 		}
 	}
 }
 
-void mostrarhorastotalporproyecto(SIN_TIPO analistas, SIN_TIPO totalanalistas, SIN_TIPO totalproyectos, SIN_TIPO cantidad_horas) {
-	float analistas;
-	int horastotalproyecto;
-	float iteradori;
-	float iteradorj;
-	float totalanalistas;
-	float totalproyectos;
+void mostrarHorasTotalPorProyecto(int analista[10][15][1], int totalAnalistas, int totalProyectos, int CANTIDAD_HORAS) {
 	printf("Total de hs trabajadas sobre cada proyecto: \n");
-	for (iteradorj=1; iteradorj<=totalproyectos; ++iteradorj) {
-		horastotalproyecto = 0;
-		for (iteradori=1; iteradori<=totalanalistas; ++iteradori) {
-			if (analistas[iteradori-1][iteradorj-1][cantidad_horas-1]>0) {
-				horastotalproyecto = horastotalproyecto+analistas[iteradori-1][iteradorj-1][cantidad_horas-1];
+	int horasTotalProyecto;
+	for (int j = 0; j < totalProyectos; j++) {
+		horasTotalProyecto = 0;
+		for (int i = 0; i < totalAnalistas; i++) {
+			if (analista[i][j][CANTIDAD_HORAS] > 0) {
+				horasTotalProyecto += analista[i][j][CANTIDAD_HORAS];
 			}
 		}
-		printf("....En el proyecto [%f] trabajaron un total de (%i) hs.\n", iteradorj, horastotalproyecto);
+		printf("....En el proyecto [%i] trabajaron un total de (%i) hs.\n", j+1, horasTotalProyecto);
 	}
 }
 
-void mostrarhorastotalenproyecto(SIN_TIPO numeroproyecto, SIN_TIPO analistas, SIN_TIPO totalanalistas, SIN_TIPO totalproyectos, SIN_TIPO cantidad_horas) {
-	int analistanumero;
-	float analistas;
-	bool conhorastrabajadas;
-	bool esashorassonmenoresalminimo;
-	float iteradori;
-	int menoshorasanalista;
-	SIN_TIPO numeroproyecto;
-	float totalanalistas;
-	analistanumero = 0;
-	for (iteradori=1; iteradori<=totalanalistas; ++iteradori) {
-		conhorastrabajadas = analistas[iteradori-1][numeroproyecto-1][cantidad_horas-1]>0;
-		esashorassonmenoresalminimo = analistas[iteradori-1][numeroproyecto-1][cantidad_horas-1]<menoshorasanalista || (menoshorasanalista)==(0);
-		if (conhorastrabajadas && esashorassonmenoresalminimo) {
-			analistanumero = iteradori;
-			menoshorasanalista = analistas[iteradori-1][numeroproyecto-1][cantidad_horas-1];
+void mostrarHorasTotalEnProyecto(int numeroProyecto, int analista[10][15][1], int totalAnalistas, int totalProyectos, int CANTIDAD_HORAS) {
+	printf("Mostrar horas total en el proyecto: \n");
+	int analistaNumero = 0, menosHorasAnalista = 0;
+	bool conHorasTrabajadas, esasHorasSonMenoresAlMinimo;
+
+	for (int i = 0; i < totalAnalistas; i++) {
+		conHorasTrabajadas = analista[i][numeroProyecto][CANTIDAD_HORAS] > 0;
+		esasHorasSonMenoresAlMinimo = menosHorasAnalista == 0 || analista[i][numeroProyecto][CANTIDAD_HORAS] < menosHorasAnalista;
+
+		if (conHorasTrabajadas && esasHorasSonMenoresAlMinimo) {
+			analistaNumero = i;
+			menosHorasAnalista = analista[i][numeroProyecto][CANTIDAD_HORAS];
 		}
 	}
-	if (!(analistanumero)==(0)) {
-		printf("El analista {%i} trabajó menos en el proyecto [%f].\n", analistanumero, numeroproyecto);
+
+	if (analistaNumero != 0) {
+		printf("El analista {%i} trabajo menos en el proyecto [%i].\n", analistaNumero+1, numeroProyecto+1);
 	} else {
 		printf("Nadie trabajo en este proyecto.\n");
 	}
 }
 
-void mostrarsueldoporanalista(SIN_TIPO analistasueldo, SIN_TIPO analistanombres, SIN_TIPO totalanalistas, SIN_TIPO sueldo) {
-	SIN_TIPO analistanombres;
-	SIN_TIPO analistasueldo;
-	float iteradori;
-	float totalanalistas;
+void mostrarSueldoPorAnalista(int analistaSueldo[10][2], char *analistaNombres[], int totalAnalistas, int SUELDO) {
 	printf("Sueldo de cada analista: \n");
-	for (iteradori=1; iteradori<=totalanalistas; ++iteradori) {
-		printf("....El analista {%f} de nombre %f tiene un sueldo de $%f.-\n", iteradori, analistanombres[iteradori-1], analistasueldo[iteradori-1][sueldo-1]);
+	for (int i = 0; i < totalAnalistas; i++) {
+		printf("....El analista {%i} de nombre %s tiene un sueldo de $%i.-\n", i+1, analistaNombres[i], analistaSueldo[i][SUELDO]);
 	}
 }
 
-void mostraranalistaconmayorcobro(SIN_TIPO analistanombres, SIN_TIPO analistasueldo, SIN_TIPO totalanalistas, SIN_TIPO sueldo) {
-	SIN_TIPO analistanombres;
-	int analistanumero;
-	int analistasueldo;
-	float iteradori;
-	int mayorcobro;
-	char nombreanalista[MAX_STRLEN];
-	float totalanalistas;
-	analistanumero = 0;
-	mayorcobro = 0;
-	nombreanalista = "";
-	for (iteradori=1; iteradori<=totalanalistas; ++iteradori) {
-		if (analistasueldo[iteradori-1][sueldo-1]>mayorcobro) {
-			mayorcobro = analistasueldo[iteradori-1][sueldo-1];
-			analistanumero = iteradori;
-			nombreanalista = analistanombres[iteradori-1];
+void mostrarAnalistaConmayorCobro(char *analistaNombres[], int analistaSueldo[10][2], int totalAnalistas, int SUELDO) {
+    printf("Analista con mayor cobro: \n");
+	int analistaNumero = 0;
+	int mayorCobro = 0;
+	char *nombreAnalista = "";
+	for (int i = 0; i < totalAnalistas; i++) {
+		if (analistaSueldo[i][SUELDO] > mayorCobro) {
+			mayorCobro = analistaSueldo[i][SUELDO];
+			analistaNumero = i;
+			nombreAnalista = analistaNombres[i];
 		}
 	}
-	printf("El analista {%i} de nombre %s cobro $%i.\n", analistanumero, nombreanalista, mayorcobro);
+	printf("El analista {%i} de nombre %s cobro $%i.\n", analistaNumero+1, nombreAnalista, mayorCobro);
 }
 
-void mostraranalistaconmenoscantidadhorasporporyectos(SIN_TIPO cantidadhoras, SIN_TIPO analistas, SIN_TIPO totalanalistas, SIN_TIPO totalproyectos, SIN_TIPO cantidad_horas) {
-	SIN_TIPO analistas;
-	float cantidadhoras;
-	float horasenproyecto;
-	float iteradori;
-	float iteradorj;
-	float totalanalistas;
-	float totalproyectos;
-	printf("Cantidad de analistas que hayan trabajado menos de 5 hs en alguno de los proyectos:\n");
-	for (iteradori=1; iteradori<=totalanalistas; ++iteradori) {
-		horasenproyecto = 0;
-		for (iteradorj=1; iteradorj<=totalproyectos; ++iteradorj) {
-			horasenproyecto = analistas[iteradori-1][iteradorj-1][cantidad_horas-1];
-			if (!(horasenproyecto)==(0) && horasenproyecto<cantidadhoras) {
-				printf("....El analista {%f} trabajó (%f) hs en el proyecto [%f].\n", iteradori, horasenproyecto, iteradorj);
+void mostrarAnalistaConMenoscantidadHorasPorPoryectos(int cantidadHoras, int analista[10][15][1], int totalAnalistas, int totalProyectos, int CANTIDAD_HORAS) {
+	printf("Cantidad de analistas que hayan trabajado menos de %i hs en alguno de los proyectos:\n", cantidadHoras);
+	int horasEnProyecto;
+	for (int i = 0; i < totalAnalistas; i++) {
+		horasEnProyecto = 0;
+		for (int j = 0; j < totalProyectos; j++) {
+			horasEnProyecto = analista[i][j][CANTIDAD_HORAS];
+			if (horasEnProyecto != 0 && horasEnProyecto < cantidadHoras) {
+				printf("....El analista {%i} trabajo (%i) hs en el proyecto [%i].\n", i+1, horasEnProyecto, j+1);
 			}
 		}
 	}
 }
 
-void ordernarporburbujeo(SIN_TIPO analistasueldo, SIN_TIPO totalanalistas, SIN_TIPO sueldo, SIN_TIPO indices) {
-	SIN_TIPO analistasueldo;
-	SIN_TIPO indices;
-	SIN_TIPO indicetemporal;
-	float iteradori;
-	float iteradorj;
-	SIN_TIPO temporal;
-	float totalanalistas;
-	for (iteradori=2; iteradori<=totalanalistas; ++iteradori) {
-		for (iteradorj=1; iteradorj<=totalanalistas-iteradori+1; ++iteradorj) {
-			if (analistasueldo[iteradorj-1][sueldo-1]>analistasueldo[iteradorj][sueldo-1]) {
-				temporal = analistasueldo[iteradorj-1][sueldo-1];
-				analistasueldo[iteradorj-1][sueldo-1] = analistasueldo[iteradorj][sueldo-1];
-				analistasueldo[iteradorj][sueldo-1] = temporal;
-				indicetemporal = indices[iteradorj-1];
-				indices[iteradorj-1] = indices[iteradorj];
-				indices[iteradorj] = indicetemporal;
+void ordernarPorBurbujeo(int analistaSueldo[10][2], int totalAnalistas, int SUELDO, int indices[10]) {
+	for (int i = 0; i < totalAnalistas; i++) {
+		for (int j = 1; j < totalAnalistas - i; j++) {
+			if (analistaSueldo[j-1][SUELDO] > analistaSueldo[j][SUELDO]) {
+				int temporal = analistaSueldo[j][SUELDO];
+				analistaSueldo[j][SUELDO] = analistaSueldo[j - 1][SUELDO];
+				analistaSueldo[j - 1][SUELDO] = temporal;
+
+				int indiceTemporal = indices[j];
+				indices[j] = indices[j - 1];
+				indices[j - 1] = indiceTemporal;
 			}
 		}
 	}
 }
 
-void mostrarnombrevalorhorasueldoporsueldodescendente(SIN_TIPO analistas, SIN_TIPO analistasueldo, SIN_TIPO analistanombres, SIN_TIPO totalanalistas, SIN_TIPO totalproyectos, SIN_TIPO cantidad_horas, SIN_TIPO sueldo, SIN_TIPO valor_horas) {
-	SIN_TIPO analistanombres;
-	SIN_TIPO analistasueldo;
-	float i;
-	float indices[ARREGLO_MAX];
-	float iteradori;
-	SIN_TIPO ordernarporburbujeo[ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX];
-	int totalanalistas;
-	for (i=1; i<=totalanalistas; ++i) {
-		indices[i-1] = i;
-	}
-	ordernarporburbujeo[analistasueldo-1][totalanalistas-1][sueldo-1][indices-1];
+void mostrarNombreValorHoraSueldoPorSueldoDescendente(int analistaSueldo[10][2], char *analistaNombres[], int totalAnalistas, int totalProyectos, int CANTIDAD_HORAS, int SUELDO, int VALOR_HORAS) {
 	printf("Imprimiendo, ordenado en forma descendente por sueldo de los analista: nombre, valor de la hora y sueldo:\n");
-	for (iteradori=totalanalistas; iteradori>=1; --iteradori) {
-		printf("....El analista {%f}-%f", indices[iteradori-1], analistanombres[indices[iteradori-1]-1]);
-		printf(" con un valor de horas de %f", analistasueldo[iteradori-1][valor_horas-1]);
-		printf(" $/hs, tiene un sueldo de $%f.-\n", analistasueldo[iteradori-1][sueldo-1]);
+	int indices[totalAnalistas];
+	for (int i = 0; i < totalAnalistas; i++) {
+		indices[i] = i;
+	}
+	ordernarPorBurbujeo(analistaSueldo, totalAnalistas, SUELDO, indices);
+
+	for (int i = totalAnalistas-1; i >= 0; i--) {
+	    int idx = indices[i];
+		printf("....El analista {%i}-%s", idx+1, analistaNombres[idx]);
+		printf(" con un valor de horas de %i", analistaSueldo[i][VALOR_HORAS]);
+		printf(" $/hs, tiene un sueldo de $%i.-\n", analistaSueldo[i][SUELDO]);
 	}
 }
 
 int main() {
-	SIN_TIPO analistanombres[ARREGLO_MAX];
-	SIN_TIPO analistas[ARREGLO_MAX][ARREGLO_MAX][1];
-	SIN_TIPO analistasueldo[ARREGLO_MAX][2];
-	float cantidadhoras;
-	int cantidad_horas;
-	SIN_TIPO cargaranalistas[ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX];
-	SIN_TIPO cargaranalistasnombres[ARREGLO_MAX][ARREGLO_MAX];
-	SIN_TIPO cargaranalistassueldos[ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX];
-	SIN_TIPO mostraranalistaconmayorcobro[ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX];
-	SIN_TIPO mostraranalistaconmenoscantidadhorasporporyectos[ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX];
-	SIN_TIPO mostrarhorasporanalistaporproyecto[ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX];
-	SIN_TIPO mostrarhorastotalenproyecto[ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX];
-	SIN_TIPO mostrarhorastotalporproyecto[ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX];
-	SIN_TIPO mostrarhorastrabajadasporanalista[ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX];
-	SIN_TIPO mostrarnombrevalorhorasueldoporsueldodescendente[ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX];
-	SIN_TIPO mostrarsueldoporanalista[ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX][ARREGLO_MAX];
-	float numeroproyecto;
-	int sueldo;
-	int totalanalistas;
-	int totalproyectos;
-	int valor_horas;
-	totalanalistas = 10;
-	totalproyectos = 15;
-	cantidad_horas = 1;
-	sueldo = 1;
-	valor_horas = 2;
-	cargaranalistas[analistas-1][totalanalistas-1][totalproyectos-1][cantidad_horas-1];
-	cargaranalistassueldos[analistasueldo-1][totalanalistas-1][sueldo-1][valor_horas-1];
-	cargaranalistasnombres[analistanombres-1][totalanalistas-1];
+	int totalAnalistas = 10;
+	int totalProyectos = 15;
+	int CANTIDAD_HORAS = 1;
+	int analistas[totalAnalistas][totalProyectos][1];
+	
+	int SUELDO = 1, VALOR_HORAS = 2;
+	int analistaSueldo[totalAnalistas][2];
+	char *analistaNombres[totalAnalistas];
+	
+	cargarAnalistas(analistas, totalAnalistas, totalProyectos, CANTIDAD_HORAS);
+	cargarAnalistasSueldos(analistaSueldo, totalAnalistas, SUELDO, VALOR_HORAS);
+	cargarAnalistasNombres(analistaNombres, totalAnalistas);
+
 	printf("============================================\n");
-	mostrarhorastrabajadasporanalista[analistas-1][totalanalistas-1][cantidad_horas-1];
+	mostrarhorasTrabajadasPorAnalista(analistas, totalAnalistas, CANTIDAD_HORAS);
 	printf("============================================\n");
-	mostrarhorasporanalistaporproyecto[analistas-1][totalanalistas-1][totalproyectos-1][cantidad_horas-1];
+	mostrarHorasPorAnalistaPorProyecto(analistas, totalAnalistas, totalProyectos, CANTIDAD_HORAS);
 	printf("============================================\n");
-	mostrarhorastotalporproyecto[analistas-1][totalanalistas-1][totalproyectos-1][cantidad_horas-1];
+	mostrarHorasTotalPorProyecto(analistas, totalAnalistas, totalProyectos, CANTIDAD_HORAS);
 	printf("============================================\n");
-	numeroproyecto = 1;
-	mostrarhorastotalenproyecto[numeroproyecto-1][analistas-1][totalanalistas-1][totalproyectos-1][cantidad_horas-1];
+	int numeroProyecto = 1;
+	mostrarHorasTotalEnProyecto(numeroProyecto, analistas, totalAnalistas, totalProyectos, CANTIDAD_HORAS);
 	printf("============================================\n");
-	mostrarsueldoporanalista[analistasueldo-1][analistanombres-1][totalanalistas-1][sueldo-1];
+	mostrarSueldoPorAnalista(analistaSueldo, analistaNombres, totalAnalistas, SUELDO);
 	printf("============================================\n");
-	mostraranalistaconmayorcobro[analistanombres-1][analistasueldo-1][totalanalistas-1][sueldo-1];
+	mostrarAnalistaConmayorCobro(analistaNombres, analistaSueldo, totalAnalistas, SUELDO);
 	printf("============================================\n");
-	cantidadhoras = 5;
-	mostraranalistaconmenoscantidadhorasporporyectos[cantidadhoras-1][analistas-1][totalanalistas-1][totalproyectos-1][cantidad_horas-1];
+	int cantidadHoras = 5;
+	mostrarAnalistaConMenoscantidadHorasPorPoryectos(cantidadHoras, analistas, totalAnalistas, totalProyectos, CANTIDAD_HORAS);
 	printf("============================================\n");
-	mostrarnombrevalorhorasueldoporsueldodescendente[analistas-1][analistasueldo-1][analistanombres-1][totalanalistas-1][totalproyectos-1][cantidad_horas-1][sueldo-1][valor_horas-1];
+	mostrarNombreValorHoraSueldoPorSueldoDescendente(analistaSueldo, analistaNombres, totalAnalistas, totalProyectos, CANTIDAD_HORAS, SUELDO, VALOR_HORAS);
 	printf("============================================\n");
 	return 0;
 }
-

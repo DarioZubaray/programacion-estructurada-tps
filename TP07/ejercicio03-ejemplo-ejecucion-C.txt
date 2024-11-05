@@ -1,0 +1,123 @@
+============================================
+Cantidad de hs. trabajadas en total por cada analista: 
+....El analista {1} trabajo un total de (28) hs.
+....El analista {2} trabajo un total de (68) hs.
+....El analista {3} trabajo un total de (67) hs.
+....El analista {4} trabajo un total de (34) hs.
+....El analista {5} trabajo un total de (12) hs.
+....El analista {6} trabajo un total de (27) hs.
+....El analista {7} trabajo un total de (69) hs.
+....El analista {8} trabajo un total de (20) hs.
+....El analista {9} trabajo un total de (9) hs.
+....El analista {10} trabajo un total de (51) hs.
+============================================
+Total de horas trabajadas por cada analista en cada proyecto.
+En el proyecto [1] trabajaron: 
+....El analista {7} con un total de (33) hs.
+En el proyecto [2] trabajaron: 
+....El analista {1} con un total de (9) hs.
+....El analista {2} con un total de (26) hs.
+....El analista {4} con un total de (34) hs.
+....El analista {8} con un total de (3) hs.
+En el proyecto [3] trabajaron: 
+....El analista {1} con un total de (5) hs.
+....El analista {5} con un total de (12) hs.
+....El analista {8} con un total de (17) hs.
+En el proyecto [4] trabajaron: 
+....El analista {3} con un total de (11) hs.
+En el proyecto [5] trabajaron: 
+....El analista {2} con un total de (19) hs.
+....El analista {3} con un total de (29) hs.
+....El analista {9} con un total de (8) hs.
+En el proyecto [6] trabajaron: 
+....El analista {3} con un total de (19) hs.
+....El analista {6} con un total de (2) hs.
+....El analista {9} con un total de (1) hs.
+....El analista {10} con un total de (4) hs.
+En el proyecto [7] trabajaron: 
+....El analista {2} con un total de (18) hs.
+....El analista {3} con un total de (8) hs.
+....El analista {10} con un total de (17) hs.
+En el proyecto [8] trabajaron: 
+....El analista {7} con un total de (31) hs.
+En el proyecto [9] trabajaron: 
+....El analista {2} con un total de (5) hs.
+....El analista {6} con un total de (25) hs.
+En el proyecto [10] trabajaron: 
+....El analista {1} con un total de (14) hs.
+....El analista {7} con un total de (5) hs.
+....El analista {10} con un total de (30) hs.
+En el proyecto [11] trabajaron: 
+....El analista {1} con un total de (23) hs.
+....El analista {5} con un total de (28) hs.
+....El analista {8} con un total de (24) hs.
+En el proyecto [12] trabajaron: 
+....El analista {1} con un total de (24) hs.
+....El analista {2} con un total de (31) hs.
+....El analista {4} con un total de (15) hs.
+....El analista {7} con un total de (5) hs.
+En el proyecto [13] trabajaron: 
+....El analista {1} con un total de (16) hs.
+....El analista {5} con un total de (30) hs.
+....El analista {10} con un total de (17) hs.
+En el proyecto [14] trabajaron: 
+....El analista {1} con un total de (35) hs.
+....El analista {2} con un total de (9) hs.
+....El analista {3} con un total de (32) hs.
+....El analista {6} con un total de (28) hs.
+En el proyecto [15] trabajaron: 
+....El analista {2} con un total de (11) hs.
+============================================
+Total de hs trabajadas sobre cada proyecto: 
+....En el proyecto [1] trabajaron un total de (33) hs.
+....En el proyecto [2] trabajaron un total de (72) hs.
+....En el proyecto [3] trabajaron un total de (34) hs.
+....En el proyecto [4] trabajaron un total de (11) hs.
+....En el proyecto [5] trabajaron un total de (56) hs.
+....En el proyecto [6] trabajaron un total de (26) hs.
+....En el proyecto [7] trabajaron un total de (43) hs.
+....En el proyecto [8] trabajaron un total de (31) hs.
+....En el proyecto [9] trabajaron un total de (30) hs.
+....En el proyecto [10] trabajaron un total de (49) hs.
+....En el proyecto [11] trabajaron un total de (75) hs.
+....En el proyecto [12] trabajaron un total de (75) hs.
+....En el proyecto [13] trabajaron un total de (63) hs.
+....En el proyecto [14] trabajaron un total de (104) hs.
+....En el proyecto [15] trabajaron un total de (11) hs.
+============================================
+Mostrar horas total en el proyecto: 
+El analista {8} trabajo menos en el proyecto [2].
+============================================
+Sueldo de cada analista: 
+....El analista {1} de nombre Santiago tiene un sueldo de $4300.-
+....El analista {2} de nombre Mateo tiene un sueldo de $2800.-
+....El analista {3} de nombre Sebastian tiene un sueldo de $1100.-
+....El analista {4} de nombre Valentina tiene un sueldo de $2900.-
+....El analista {5} de nombre Maria tiene un sueldo de $400.-
+....El analista {6} de nombre Sofia tiene un sueldo de $1300.-
+....El analista {7} de nombre Lucas tiene un sueldo de $3800.-
+....El analista {8} de nombre Alejandro tiene un sueldo de $4000.-
+....El analista {9} de nombre Gabriela tiene un sueldo de $1800.-
+....El analista {10} de nombre Daniel tiene un sueldo de $3800.-
+============================================
+Analista con mayor cobro: 
+El analista {1} de nombre Santiago cobro $4300.
+============================================
+Cantidad de analistas que hayan trabajado menos de 5 hs en alguno de los proyectos:
+....El analista {6} trabajo (2) hs en el proyecto [6].
+....El analista {8} trabajo (3) hs en el proyecto [2].
+....El analista {9} trabajo (1) hs en el proyecto [6].
+....El analista {10} trabajo (4) hs en el proyecto [6].
+============================================
+Imprimiendo, ordenado en forma descendente por sueldo de los analista: nombre, valor de la hora y sueldo:
+....El analista {1}-Santiago con un valor de horas de 19 $/hs, tiene un sueldo de $4300.-
+....El analista {8}-Alejandro con un valor de horas de 28 $/hs, tiene un sueldo de $4000.-
+....El analista {10}-Daniel con un valor de horas de 4 $/hs, tiene un sueldo de $3800.-
+....El analista {7}-Lucas con un valor de horas de 6 $/hs, tiene un sueldo de $3800.-
+....El analista {4}-Valentina con un valor de horas de 13 $/hs, tiene un sueldo de $2900.-
+....El analista {2}-Mateo con un valor de horas de 43 $/hs, tiene un sueldo de $2800.-
+....El analista {9}-Gabriela con un valor de horas de 26 $/hs, tiene un sueldo de $1800.-
+....El analista {6}-Sofia con un valor de horas de 28 $/hs, tiene un sueldo de $1300.-
+....El analista {3}-Sebastian con un valor de horas de 43 $/hs, tiene un sueldo de $1100.-
+....El analista {5}-Maria con un valor de horas de 18 $/hs, tiene un sueldo de $400.-
+============================================
