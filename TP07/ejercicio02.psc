@@ -42,7 +42,7 @@ Función busquedaBinaria(miVector,longitudVector,numeroABuscar)
 		FinSi
 	FinMientras
 	Si (encontrado)=(Falso) Entonces
-		Escribir 'El numero {', numeroABuscar, '} No fue encontrado.'
+		Escribir 'El numero {', numeroABuscar, '} no fue encontrado con la busqueda binaria.'
 	FinSi
 FinFunción
 
@@ -55,8 +55,40 @@ Función busquedaSecuencial(miVector,longitudVector,numeroABuscar)
 		FinSi
 	FinPara
 	Si (encontrado)=(Falso) Entonces
-		Escribir 'El numero {', numeroABuscar, '} No fue encontrado.'
+		Escribir 'El numero {', numeroABuscar, '} no fue encontrado con la busqueda secuencial.'
 	FinSi
+FinFunción
+
+Función ingresarBuscarNumero(miVector,longitudVector)
+	Definir continuarBusqueda Como Lógico
+	continuarBusqueda <- Verdadero
+	Mientras continuarBusqueda Hacer
+		Escribir '============================================'
+		Escribir 'Ingrese un numero a buscar: '
+		Leer numeroABuscar
+		Si  NO (numeroABuscar)=(0) Entonces
+			Escribir '============================================'
+			Escribir 'Seleccione el tipo de algoritmo de busqueda: '
+			Escribir '....1 - Binaria'
+			Escribir '....2 - Secuencial'
+			Escribir '============================================'
+			Leer tipoAlgoritmo
+			Según tipoAlgoritmo Hacer
+				1:
+					ordernarPorBurbujeo(miVector,longitudVector)
+					mostrarVector(miVector,longitudVector)
+					busquedaBinaria(miVector,longitudVector,numeroABuscar)
+				2:
+					mostrarVector(miVector,longitudVector)
+					busquedaSecuencial(miVector,longitudVector,numeroABuscar)
+				De Otro Modo:
+					Escribir 'No existe un modo ', tipoAlgoritmo
+			FinSegún
+		SiNo
+			continuarBusqueda <- Falso
+			Escribir 'Fin programa.'
+		FinSi
+	FinMientras
 FinFunción
 
 Algoritmo ejercicio02
@@ -67,24 +99,5 @@ Algoritmo ejercicio02
 		Escribir 'Ingrese un valor numerico: '
 		Leer miVector[i]
 	FinPara
-	Escribir '============================================'
-	Escribir 'Ingrese un numero a buscar: '
-	Leer numeroABuscar
-	Escribir '============================================'
-	Escribir 'Seleccione el tipo de algoritmo de busqueda: '
-	Escribir '....1 - Binaria'
-	Escribir '....2 - Secuencial'
-	Escribir '============================================'
-	Leer tipoAlgoritmo
-	Según tipoAlgoritmo Hacer
-		1:
-			ordernarPorBurbujeo(miVector,longitudVector)
-			mostrarVector(miVector,longitudVector)
-			busquedaBinaria(miVector,longitudVector,numeroABuscar)
-		2:
-			mostrarVector(miVector,longitudVector)
-			busquedaSecuencial(miVector,longitudVector,numeroABuscar)
-		De Otro Modo:
-			Escribir 'No existe un modo ', tipoAlgoritmo
-	FinSegún
+	ingresarBuscarNumero(miVector,longitudVector)
 FinAlgoritmo

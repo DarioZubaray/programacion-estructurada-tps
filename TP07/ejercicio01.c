@@ -4,7 +4,7 @@
 /* 1 - Ingrese 20 valores en un vector e imprimalo ordenado  */
 /* utilizando el algoritmo bubblesort u ordenamiento por burbujeo. */
 
-void ingresarValores(int miVector[5], int longitudVector) {
+void ingresarValores(int miVector[5], int LONGITUD_VECTOR) {
 	bool continuar = true;
 	int valorNumerico;
 	int i = 0;
@@ -13,23 +13,23 @@ void ingresarValores(int miVector[5], int longitudVector) {
 		scanf("%i", &valorNumerico);
 		miVector[i] = valorNumerico;
 		i++;
-		if (valorNumerico == 0 || i >= longitudVector) {
+		if (valorNumerico == 0 || i >= LONGITUD_VECTOR) {
 			continuar = false;
 		}
 	}
 }
 
-void mostrarVector(char *textoAMostrar, int miVector[5], int longitudVector) {
+void mostrarVector(char *textoAMostrar, int miVector[5], int LONGITUD_VECTOR) {
 	printf("%s [", textoAMostrar);
-	for (int i = 0; i < longitudVector; i++) {
+	for (int i = 0; i < LONGITUD_VECTOR; i++) {
 		printf("%i, ", miVector[i]);
 	}
 	printf("]\n");
 }
 
-void ordernarPorBurbujeo(int miVector[5], int longitudVector) {
-	for (int i = 0; i < longitudVector; i++) {
-		for (int j = 1; j < longitudVector - i; j++) {
+void ordernarPorBurbujeo(int miVector[5], int LONGITUD_VECTOR) {
+	for (int i = 0; i < LONGITUD_VECTOR; i++) {
+		for (int j = 1; j < LONGITUD_VECTOR - i; j++) {
 			if (miVector[j-1] > miVector[j]) {
 				int temporal = miVector[j];
 				miVector[j] = miVector[j - 1];
@@ -40,17 +40,17 @@ void ordernarPorBurbujeo(int miVector[5], int longitudVector) {
 }
 
 int main() {
-	int longitudVector = 5;
-	int miVector[longitudVector];
+	int LONGITUD_VECTOR = 5;
+	int miVector[LONGITUD_VECTOR];
 
-	printf("Ingrese hasta un maximo de %i numeros\n", longitudVector);
+	printf("Ingrese hasta un maximo de %i numeros\n", LONGITUD_VECTOR);
 	printf("(Ingrese 0 para terminar)\n");
 
-	ingresarValores(miVector, longitudVector);
+	ingresarValores(miVector, LONGITUD_VECTOR);
 
-	mostrarVector("Orden inicial: ", miVector, longitudVector);
-	ordernarPorBurbujeo(miVector, longitudVector);
-	mostrarVector("Orden por burbujeo: ", miVector, longitudVector);
+	mostrarVector("Orden inicial: ", miVector, LONGITUD_VECTOR);
+	ordernarPorBurbujeo(miVector, LONGITUD_VECTOR);
+	mostrarVector("Orden por burbujeo: ", miVector, LONGITUD_VECTOR);
 
 	return 0;
 }

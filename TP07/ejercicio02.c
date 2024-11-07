@@ -6,9 +6,9 @@
 /* para realizar una busqueda. Permita que el operador del programa elija que tipo de algoritmo  */
 /* quiere utilizar por medio de un menu (debe ser busqueda binaria o secuencial). */
 
-void ordernarPorBurbujeo(int miVector[10], int longitudVector) {
-	for (int i = 0; i < longitudVector; i++) {
-		for (int j = 1; j < longitudVector - i; j++) {
+void ordernarPorBurbujeo(int miVector[10], int LONGITUD_VECTOR) {
+	for (int i = 0; i < LONGITUD_VECTOR; i++) {
+		for (int j = 1; j < LONGITUD_VECTOR - i; j++) {
 			if (miVector[j-1] > miVector[j]) {
 				int temporal = miVector[j];
 				miVector[j] = miVector[j - 1];
@@ -18,20 +18,19 @@ void ordernarPorBurbujeo(int miVector[10], int longitudVector) {
 	}
 }
 
-void mostrarVector(int miVector[10], int longitudVector) {
+void mostrarVector(int miVector[10], int LONGITUD_VECTOR) {
 	printf("{");
-	for (int i = 0; i < longitudVector; i++) {
+	for (int i = 0; i < LONGITUD_VECTOR; i++) {
 		printf("%i, ", miVector[i]);
 	}
 	printf("}\n");
 }
 
-void busquedaBinaria(int miVector[10], int longitudVector, int numeroABuscar) {
+void busquedaBinaria(int miVector[10], int LONGITUD_VECTOR, int numeroABuscar) {
 	bool encontrado;
-	int primero = 0, medio = 0, ultimo = longitudVector;
+	int primero = 0, medio = 0, ultimo = LONGITUD_VECTOR;
 	while (primero < ultimo && !encontrado) {
 		medio = (ultimo + primero)/2;
-		printf("primero: %i, medio: %i, ultimo: %i\n", primero, medio, ultimo);
 		if (miVector[medio] == numeroABuscar) {
 			printf("Numero {%i}, encontrado en posicion: %i\n", numeroABuscar, medio+1);
 			encontrado = true;
@@ -42,55 +41,66 @@ void busquedaBinaria(int miVector[10], int longitudVector, int numeroABuscar) {
 		}
 	}
 	if (!encontrado) {
-		printf("El numero {%i} No fue encontrado.\n", numeroABuscar);
+		printf("El numero {%i} no fue encontrado con la busqueda binaria.\n", numeroABuscar);
 	}
 }
 
-void busquedaSecuencial(int miVector[10], int longitudVector, int numeroABuscar) {
+void busquedaSecuencial(int miVector[10], int LONGITUD_VECTOR, int numeroABuscar) {
 	bool encontrado;
-	for (int i = 0; i < longitudVector; i++) {
+	for (int i = 0; i < LONGITUD_VECTOR; i++) {
 		if (miVector[i] == numeroABuscar) {
 			printf("Numero {%i}, encontrado en posicion: %i\n", numeroABuscar, i+1);
 			encontrado = true;
 		}
 	}
 	if (!encontrado) {
-		printf("El numero {%i} No fue encontrado.\n", numeroABuscar);
+		printf("El numero {%i} no fue encontrado con la busqueda secuencial.\n", numeroABuscar);
+	}
+}
+
+void ingresarBuscarNumero(int miVector[10], int LONGITUD_VECTOR) {
+	int numeroABuscar, tipoAlgoritmo;
+	while(true) {
+		printf("============================================\n");
+		printf("Ingrese un numero a buscar: \n");
+		scanf("%i", &numeroABuscar);
+		if(numeroABuscar == 0) {
+			printf("'Fin programa.'");
+			break;
+		}
+		printf("============================================\n");
+		printf("Seleccione el tipo de algoritmo de busqueda: \n");
+		printf("....1 - Binaria\n");
+		printf("....2 - Secuencial\n");
+		printf("============================================\n");
+
+		scanf("%i", &tipoAlgoritmo);
+		switch (tipoAlgoritmo) {
+			case 1:
+				ordernarPorBurbujeo(miVector, LONGITUD_VECTOR);
+				mostrarVector(miVector, LONGITUD_VECTOR);
+				busquedaBinaria(miVector, LONGITUD_VECTOR, numeroABuscar);
+				break;
+			case 2:
+				mostrarVector(miVector, LONGITUD_VECTOR);
+				busquedaSecuencial(miVector, LONGITUD_VECTOR, numeroABuscar);
+				break;
+			default:
+				printf("No existe un modo %i\n", tipoAlgoritmo);
+		}
 	}
 }
 
 int main() {
-	int longitudVector = 10;
-	int miVector[longitudVector];
+	int LONGITUD_VECTOR = 10;
+	int miVector[LONGITUD_VECTOR];
 
-	for (int i = 0; i < longitudVector; i++) {
+	for (int i = 0; i < LONGITUD_VECTOR; i++) {
 		printf("Ingrese un valor numerico: \n");
 		scanf("%i", &miVector[i]);
 	}
 
-	printf("============================================\n");
-	printf("Ingrese un numero a buscar: \n");
-	int numeroABuscar;
-	scanf("%i", &numeroABuscar);
-	printf("============================================\n");
-	printf("Seleccione el tipo de algoritmo de busqueda: \n");
-	printf("....1 - Binaria\n");
-	printf("....2 - Secuencial\n");
-	printf("============================================\n");
-	int tipoAlgoritmo;
-	scanf("%i", &tipoAlgoritmo);
-	switch (tipoAlgoritmo) {
-		case 1:
-			ordernarPorBurbujeo(miVector, longitudVector);
-			mostrarVector(miVector, longitudVector);
-			busquedaBinaria(miVector, longitudVector, numeroABuscar);
-			break;
-		case 2:
-			mostrarVector(miVector, longitudVector);
-			busquedaSecuencial(miVector, longitudVector, numeroABuscar);
-			break;
-		default:
-			printf("No existe un modo %i\n", tipoAlgoritmo);
-	}
+	ingresarBuscarNumero(miVector,LONGITUD_VECTOR);
+
 	return 0;
 }

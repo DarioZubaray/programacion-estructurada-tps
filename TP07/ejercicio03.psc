@@ -10,37 +10,62 @@
 // - Nombre del analista que cobró más.
 // - Cantidad de analistas que hayan trabajado menos de 5 hs en alguno de los proyectos.
 // - Imprimir ordenado en forma descendente por sueldo de los analista: nombre, valor de la hora y sueldo
-Función cargarAnalistas(analista,totalAnalistas,totalProyectos,CANTIDAD_HORAS)
-	Para iteradorI<-1 Hasta totalAnalistas Con Paso 1 Hacer
-		Para iteradorJ<-1 Hasta totalProyectos Con Paso 1 Hacer
-			numeroAleatorio <- azar(24)
-			Si numeroAleatorio>15 Entonces
-				analista[iteradorI,iteradorJ,CANTIDAD_HORAS]<-azar(36)
-			SiNo
-				analista[iteradorI,iteradorJ,CANTIDAD_HORAS]<-0
-			FinSi
-		FinPara
-	FinPara
+Función continuar <- deseaContinuar
+	Definir continuar Como Lógico
+	Escribir 'Desea continuar? (Si/No)'
+	Leer respuesta
+	Si respuesta=='No' O respuesta=='no' O respuesta=='N' O respuesta=='n' Entonces
+		continuar <- Falso
+	SiNo
+		continuar <- Verdadero
+	FinSi
 FinFunción
 
-Función cargarAnalistasSueldos(analistaSueldo,totalAnalistas,SUELDO,VALOR_HORAS)
+Función cargarAnalistas(analista,CANTIDAD_HORAS)
+	Definir continuar Como Lógico
+	continuar <- Verdadero
+	Definir numeroAnalista, numeroProyecto, cantidadHoras Como Entero
+	Mientras continuar Hacer
+		Escribir 'Ingrese numero de analista: '
+		Leer numeroAnalista
+		Escribir 'Ingrese numero de proyecto: '
+		Leer numeroProyecto
+		Escribir 'Ingrese cantidad de horas: '
+		Leer cantidadHoras
+		analista[numeroAnalista,numeroProyecto,CANTIDAD_HORAS]<-cantidadHoras
+		continuar <- deseaContinuar
+	FinMientras
+FinFunción
+
+Función cargarAnalistasSueldos(analista,analistaSueldo,totalAnalistas,totalProyectos,CANTIDAD_HORAS,SUELDO,VALOR_HORAS)
+	Definir totalHorasAnalista, valorHoras Como Entero
+	valorHoras <- 0
 	Para iteradorI<-1 Hasta totalAnalistas Con Paso 1 Hacer
-		analistaSueldo[iteradorI,SUELDO]<-azar(50)*100
-		analistaSueldo[iteradorI,VALOR_HORAS]<-azar(50)
+		totalHorasAnalista <- 0
+		Para iteradorJ<-1 Hasta totalProyectos Con Paso 1 Hacer
+			totalHorasAnalista <- totalHorasAnalista+analista[iteradorI,iteradorJ,CANTIDAD_HORAS]
+		FinPara
+		valorHoras <- azar(40)+25
+		analistaSueldo[iteradorI,VALOR_HORAS]<-valorHoras
+		analistaSueldo[iteradorI,SUELDO]<-totalHorasAnalista*valorHoras
 	FinPara
 FinFunción
 
 Función cargarAnalistasNombres(analistaNombres,totalAnalistas)
-	analistaNombres[1] <- 'Santiago'
-	analistaNombres[2] <- 'Mateo'
-	analistaNombres[3] <- 'Sebastián'
-	analistaNombres[4] <- 'Valentina'
-	analistaNombres[5] <- 'María'
-	analistaNombres[6] <- 'Sofía'
-	analistaNombres[7] <- 'Lucas'
-	analistaNombres[8] <- 'Alejandro'
-	analistaNombres[9] <- 'Gabriela'
-	analistaNombres[totalAnalistas] <- 'Daniel'
+	Dimensionar nombresEjemplo(10)
+	nombresEjemplo[1] <- 'Santiago'
+	nombresEjemplo[2] <- 'Mateo'
+	nombresEjemplo[3] <- 'Sebastián'
+	nombresEjemplo[4] <- 'Valentina'
+	nombresEjemplo[5] <- 'María'
+	nombresEjemplo[6] <- 'Sofía'
+	nombresEjemplo[7] <- 'Lucas'
+	nombresEjemplo[8] <- 'Alejandro'
+	nombresEjemplo[9] <- 'Gabriela'
+	nombresEjemplo[10] <- 'Daniel'
+	Para iterador<-1 Hasta totalAnalistas Con Paso 1 Hacer
+		analistaNombres[iterador] <- nombresEjemplo[iterador]
+	FinPara
 FinFunción
 
 Función mostrarHorasTrabajadasPorAnalista(analistas,totalAnalistas,CANTIDAD_HORAS)
@@ -165,9 +190,9 @@ FinFunción
 
 Algoritmo ejercicio03
 	Definir totalAnalistas, totalProyectos Como Entero
-	totalAnalistas <- 10
-	totalProyectos <- 15
-	Definir CANTIDAD_HORAS Como Entero
+	totalAnalistas <- 5
+	totalProyectos <- 7 // 10
+	Definir CANTIDAD_HORAS Como Entero // 15
 	CANTIDAD_HORAS <- 1
 	Dimensionar analistas(totalAnalistas,totalProyectos,1)
 	Definir SUELDO, VALOR_HORAS Como Entero
@@ -175,8 +200,8 @@ Algoritmo ejercicio03
 	VALOR_HORAS <- 2
 	Dimensionar analistaSueldo(totalAnalistas,2)
 	Dimensionar analistaNombres(totalAnalistas)
-	cargarAnalistas(analistas,totalAnalistas,totalProyectos,CANTIDAD_HORAS)
-	cargarAnalistasSueldos(analistaSueldo,totalAnalistas,SUELDO,VALOR_HORAS)
+	cargarAnalistas(analistas,CANTIDAD_HORAS)
+	cargarAnalistasSueldos(analistas,analistaSueldo,totalAnalistas,totalProyectos,CANTIDAD_HORAS,SUELDO,VALOR_HORAS)
 	cargarAnalistasNombres(analistaNombres,totalAnalistas)
 	Escribir '============================================'
 	mostrarHorasTrabajadasPorAnalista(analistas,totalAnalistas,CANTIDAD_HORAS)

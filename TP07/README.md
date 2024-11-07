@@ -12,7 +12,7 @@ Codifique en C los siguientes puntos
 
 
 
-3- Una consultora tiene 10 analistas y 15 proyectos en los que trabajan indistintamente, a fin de mes cada analista eleva una planilla con los siguientes datos`:
+3- Una consultora tiene 10 analistas y 15 proyectos en los que trabajan indistintamente, a fin de mes cada analista eleva una planilla con los siguientes datos:
 ```
 Número de analista
 Número de proyecto
